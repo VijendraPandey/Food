@@ -1,0 +1,22 @@
+{
+  "name": "food",
+  "version": "1.0.0",
+  "description": "Food ordering app",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VijendraPandey/Food.git"
+  },
+  "author": "Vijendra Pandey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VijendraPandey/Food/issues"
+  },
+  "homepage": "https://github.com/VijendraPandey/Food#readme",
+  "devDependencies": {
+    "parcel": "^2.11.0"
+  }
+}
