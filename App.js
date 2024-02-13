@@ -27,14 +27,6 @@ const Header = () => {
   );
 };
 
-const Haldiram = {
-  image:
-    "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/domuja3qjqsuwgtl1fyp",
-  name: "Haldiram's",
-  cuisines: ["Sweets", "Snacks"],
-  rating: "4.2",
-};
-
 const restaurantList = [
   {
     info: {
@@ -211,18 +203,18 @@ const restaurantList = [
   },
 ];
 
-const RestaurantCard = () => {
+const RestaurantCard = ({ cloudinaryImageId, name, cuisines, avgRating }) => {
   return (
     <div className="card">
       <img
         src={
           "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-          restaurantList[4].info?.cloudinaryImageId
+          cloudinaryImageId
         }
       ></img>
-      <h2>{restaurantList[4].info?.name}</h2>
-      <h3>{restaurantList[4].info?.cuisines.join(", ")}</h3>
-      <h4>{restaurantList[4].info?.avgRating} stars</h4>
+      <h2>{name}</h2>
+      <h3>{cuisines.join(", ")}</h3>
+      <h4>{avgRating} stars</h4>
     </div>
   );
 };
@@ -230,12 +222,9 @@ const RestaurantCard = () => {
 const Body = () => {
   return (
     <div className="restaurant-list">
-      <RestaurantCard />
-      <RestaurantCard />
-      <RestaurantCard />
-      <RestaurantCard />
-      <RestaurantCard />
-      <RestaurantCard />
+      {restaurantList.map((restaurant) => {
+        return <RestaurantCard {...restaurant.info} key={restaurant.info.id} />;
+      })}
     </div>
   );
 };
