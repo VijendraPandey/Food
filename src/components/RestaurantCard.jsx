@@ -1,5 +1,6 @@
 import {IMG_CDN_URL} from "../constants";
 
+//props recieve destructured information
 const RestaurantCard = ({ cloudinaryImageId, name, cuisines, avgRating }) => {
     return (
       <div className="card">

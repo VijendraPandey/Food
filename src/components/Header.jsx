@@ -1,3 +1,6 @@
+import { useState } from "react";
+
+//contains logo
 const Title = () => {
   return (
     <img
@@ -8,7 +11,10 @@ const Title = () => {
   );
 };
 
+//contains nav-bar
 const Header = () => {
+  const [isloggedin, setIsLoggedin] = useState(true);
+
   return (
     <div className="header">
       <Title />
@@ -20,6 +26,23 @@ const Header = () => {
           <li>Cart</li>
         </ul>
       </div>
+      {isloggedin ? (
+        <button
+          onClick={() => {
+            setIsLoggedin(false);
+          }}
+        >
+          LogOut
+        </button>
+      ) : (
+        <button
+          onClick={() => {
+            setIsLoggedin(true);
+          }}
+        >
+          LogIn
+        </button>
+      )}
     </div>
   );
 };
