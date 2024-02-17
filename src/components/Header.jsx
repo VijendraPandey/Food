@@ -1,13 +1,13 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import Logo from "../assets/img/logo.png";
 
 //contains logo
 const Title = () => {
   return (
-    <img
-      className="logo"
-      alt="logo"
-      src="https://wallpapercave.com/wp/wp11030601.jpg"
-    />
+    <a href="/">
+      <img className="logo" alt="logo" src={Logo} />
+    </a>
   );
 };
 
@@ -20,9 +20,15 @@ const Header = () => {
       <Title />
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact Us</li>
+          <Link to="/">
+            <li>Home</li>
+          </Link>
+          <Link to="/about">
+            <li>About</li>
+          </Link>
+          <Link to="/contact">
+            <li>Contact Us</li>
+          </Link>
           <li>Cart</li>
         </ul>
       </div>

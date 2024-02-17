@@ -35,3 +35,19 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.shimmer-card {
+  width: 200px;
+  height: 250px;
+  margin: 10px;
+  background-color: lightgrey;
+}
+
+img {
+  width: 250px;
+}
+
+.menu {
+  display: flex;
+  gap: 200px;
+}

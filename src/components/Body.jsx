@@ -1,6 +1,6 @@
-import { restaurantList } from "../constants";
-import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 
 //filters restaurant based upon the search text
@@ -65,7 +65,12 @@ const Body = () => {
       <div className="restaurant-list">
         {filteredRestaurants.map((restaurant) => {
           return (
-            <RestaurantCard {...restaurant.info} key={restaurant.info.id} /> //spread operator to destructure restaurant info into name, cuisines etc
+            <Link
+              to={"/restaurant/" + restaurant.info.id}
+              key={restaurant.info.id}
+            >
+              <RestaurantCard {...restaurant.info} />
+            </Link> //spread operator to destructure restaurant info into name, cuisines etc
           );
         })}
       </div>
