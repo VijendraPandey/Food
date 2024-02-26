@@ -2,14 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
-
-//filters restaurant based upon the search text
-function filterData(searchInput, filteredRestaurants) {
-  const filterData = filteredRestaurants.filter((restaurants) =>
-    restaurants?.info?.name?.toLowerCase()?.includes(searchInput.toLowerCase())
-  );
-  return filterData;
-}
+import { filterData } from "../utils/helper";
 
 const Body = () => {
   const [allRestaurants, setAllRestaurants] = useState([]);
@@ -42,10 +35,10 @@ const Body = () => {
     <Shimmer />
   ) : (
     <>
-      <div className="search-container">
+      <div className="p-3 bg-orange-100 my-5">
         <input
           type="text"
-          className="search-input"
+          className="rounded-md px-3 py-1 focus:bg-orange-200"
           placeholder="Search"
           value={searchInput}
           onChange={(e) => {
@@ -53,7 +46,7 @@ const Body = () => {
           }}
         />
         <button
-          className="search-btn"
+          className="px-3 py-1 m-2 bg-red-300 rounded-md text-white hover:bg-orange-500"
           onClick={() => {
             const data = filterData(searchInput, allRestaurants);
             setFilteredRestaurants(data);
@@ -62,7 +55,7 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="restaurant-list">
+      <div className="flex flex-wrap">
         {filteredRestaurants.map((restaurant) => {
           return (
             <Link
