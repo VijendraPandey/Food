@@ -1,5 +1,14 @@
+import { useContext } from "react";
+import UserContext from "../utils/UserContext";
+
 const Footer = () => {
-    return <h1>Footer</h1>;
-  };
+  const { user } = useContext(UserContext);
+
+  return (
+    <h1 className="text-lg font-medium mt-10 py-5 pl-[600px] text-white bg-orange-500">
+      Developed with 💖 by {user.name}
+    </h1>
+  );
+};
 
 export default Footer;

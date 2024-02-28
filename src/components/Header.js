@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../assets/img/logo.png";
 import useOnline from "../utils/useOnline";
+import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 //contains logo
 const Title = () => {
@@ -16,6 +18,9 @@ const Title = () => {
 const Header = () => {
   const [isloggedin, setIsLoggedin] = useState(true);
   const isOnline = useOnline();
+  const { user } = useContext(UserContext);
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   return (
     <div className="flex justify-between bg-orange-200 shadow-lg">
@@ -34,28 +39,35 @@ const Header = () => {
           <Link to="/instamart">
             <li className="px-6">InstaMart</li>
           </Link>
-          <li className="px-6">Cart</li>
+          <Link to="/cart">
+            <li className="px-6">Cart ({cartItems.length})</li>
+          </Link>
         </ul>
       </div>
 
       <h1 className="py-10">{isOnline ? "✅" : "🔴"}</h1>
-      {isloggedin ? (
-        <button
-          onClick={() => {
-            setIsLoggedin(false);
-          }}
-        >
-          LogOut
-        </button>
-      ) : (
-        <button
-          onClick={() => {
-            setIsLoggedin(true);
-          }}
-        >
-          LogIn
-        </button>
-      )}
+      <span className="text-lg font-semibold py-10 text-orange-800">
+        {user.name}
+      </span>
+      <div className="text-white rounded-md bg-orange-700 px-2 py-1 mt-10 mb-10 mr-2">
+        {isloggedin ? (
+          <button
+            onClick={() => {
+              setIsLoggedin(false);
+            }}
+          >
+            LogOut
+          </button>
+        ) : (
+          <button
+            onClick={() => {
+              setIsLoggedin(true);
+            }}
+          >
+            LogIn
+          </button>
+        )}
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -10,16 +10,27 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Profile from "./components/Profile";
 import Shimmer from "./components/Shimmer";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import store from "./utils/store";
+import Cart from "./components/Cart";
 
 const Instamart = lazy(() => import("./components/Instamart"));
 
 const AppLayout = () => {
+  const [user, setUser] = useState({
+    name: "Vijendra",
+    email: "xyz@hotmail.com",
+  });
+
   return (
-    <>
-      <Header />
-      <Outlet /> {/*all the configured routes will be rendered here*/}
-      <Footer />
-    </>
+    <Provider store={store}>
+      <UserContext.Provider value={{ user: user }}>
+        <Header />
+        <Outlet /> {/*all the configured routes will be rendered here*/}
+        <Footer />
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -31,7 +42,14 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Body />,
+        element: (
+          <Body
+            user={{
+              name: "Vijendra Pandey",
+              email: "vijendra102002@gmail.com",
+            }}
+          />
+        ),
       },
       {
         path: "/about",
@@ -58,6 +76,10 @@ const appRouter = createBrowserRouter([
             <Instamart />
           </Suspense>
         ),
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
       },
     ],
   },

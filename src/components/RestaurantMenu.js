@@ -2,10 +2,16 @@ import { useParams } from "react-router-dom";
 import useRestaurant from "../utils/useRestaurant";
 import { IMG_CDN_URL } from "../constants";
 import Shimmer from "./Shimmer";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 const RestaurantMenu = () => {
   const { resId } = useParams(); // reads the dynamic URL
   const restaurant = useRestaurant(resId);
+  const dispatch = useDispatch();
+  const addFoodItem = (item) => {
+    dispatch(addItem(item));
+  };
 
   if (!restaurant) {
     return <Shimmer />;
@@ -35,7 +41,7 @@ const RestaurantMenu = () => {
           {restaurant[2]?.card?.card?.info?.costForTwoMessage}
         </h2>
       </div>
-
+      <div></div>
       <div>
         <h2 className="text-xl font-bold ml-96 mb-10">Menu</h2>
         <div className="flex">
@@ -50,7 +56,13 @@ const RestaurantMenu = () => {
               {(restaurant[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards).map(
                 (item) => (
                   <li className="text-sm" key={item?.card?.info?.id}>
-                    {item?.card?.info?.name}
+                    {item?.card?.info?.name} -
+                    <button
+                      className="text-xs rounded-full p-2 ml-2 mb-2 bg-orange-200"
+                      onClick={() => addFoodItem(item?.card?.info)}
+                    >
+                      ➕
+                    </button>
                   </li>
                 )
               )}
@@ -68,7 +80,13 @@ const RestaurantMenu = () => {
               {(restaurant[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card?.itemCards).map(
                 (item) => (
                   <li className="text-sm" key={item?.card?.info?.id}>
-                    {item?.card?.info?.name}
+                    {item?.card?.info?.name} -
+                    <button
+                      className="text-xs rounded-full p-2 ml-2 mb-2 bg-orange-200"
+                      onClick={() => addFoodItem(item?.card?.info)}
+                    >
+                      ➕
+                    </button>
                   </li>
                 )
               )}
@@ -86,7 +104,13 @@ const RestaurantMenu = () => {
               {(restaurant[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[3]?.card?.card?.itemCards).map(
                 (item) => (
                   <li className="text-sm" key={item?.card?.info?.id}>
-                    {item?.card?.info?.name}
+                    {item?.card?.info?.name} -
+                    <button
+                      className="text-xs rounded-full p-2 ml-2 mb-2 bg-orange-200"
+                      onClick={() => addFoodItem(item?.card?.info)}
+                    >
+                      ➕
+                    </button>
                   </li>
                 )
               )}
@@ -104,7 +128,13 @@ const RestaurantMenu = () => {
               {(restaurant[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[4]?.card?.card?.itemCards).map(
                 (item) => (
                   <li className="text-sm" key={item?.card?.info?.id}>
-                    {item?.card?.info?.name}
+                    {item?.card?.info?.name} -
+                    <button
+                      className="text-xs rounded-full p-2 ml-2 mb-2 bg-orange-200"
+                      onClick={() => addFoodItem(item?.card?.info)}
+                    >
+                      ➕
+                    </button>
                   </li>
                 )
               )}
