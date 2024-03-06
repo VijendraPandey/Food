@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 const Title = () => {
   return (
     <a href="/">
-      <img className="h-24 p-4" alt="logo" src={Logo} />
+      <img data-testid="logo" className="h-24 p-4" alt="logo" src={Logo} />
     </a>
   );
 };
@@ -40,12 +40,12 @@ const Header = () => {
             <li className="px-6">InstaMart</li>
           </Link>
           <Link to="/cart">
-            <li className="px-6">Cart ({cartItems.length})</li>
+            <li className="px-6" data-testid="cart-items">Cart ({cartItems.length})</li>
           </Link>
         </ul>
       </div>
 
-      <h1 className="py-10">{isOnline ? "✅" : "🔴"}</h1>
+      <h1 data-testid="status" className="py-10">{isOnline ? "✅" : "🔴"}</h1>
       <span className="text-lg font-semibold py-10 text-orange-800">
         {user.name}
       </span>

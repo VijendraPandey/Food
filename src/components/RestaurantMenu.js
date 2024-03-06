@@ -52,12 +52,13 @@ const RestaurantMenu = () => {
                   ?.card?.card?.itemCards[0]?.card?.info?.category
               }
             </h3>
-            <ul>
+            <ul data-testid="menu">
               {(restaurant[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card?.itemCards).map(
                 (item) => (
                   <li className="text-sm" key={item?.card?.info?.id}>
                     {item?.card?.info?.name} -
                     <button
+                      data-testid="addBtn"
                       className="text-xs rounded-full p-2 ml-2 mb-2 bg-orange-200"
                       onClick={() => addFoodItem(item?.card?.info)}
                     >

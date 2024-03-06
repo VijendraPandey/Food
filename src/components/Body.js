@@ -35,6 +35,7 @@ const Body = () => {
     <>
       <div className="p-3 bg-orange-100 my-5">
         <input
+          data-testid="input"
           type="text"
           className="rounded-md px-3 py-1 focus:bg-orange-200"
           placeholder="Search"
@@ -44,6 +45,7 @@ const Body = () => {
           }}
         />
         <button
+          data-testid="search"
           className="px-3 py-1 m-2 bg-red-300 rounded-md text-white hover:bg-orange-500"
           onClick={() => {
             const data = filterData(searchInput, allRestaurants);
@@ -53,7 +55,7 @@ const Body = () => {
           Search
         </button>
       </div>
-      <div className="flex flex-wrap">
+      <div className="flex flex-wrap" data-testid="res-list">
         {filteredRestaurants.map((restaurant) => {
           return (
             <Link
